@@ -3,3 +3,4 @@ b = float(input('Введите второе число'))
 c = a + b
 print(c)
 print(a - b)
+print(a * b)
