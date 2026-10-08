@@ -3,7 +3,9 @@ def parse_record(line: str) -> dict:
 
     if len(parts) != 3:
         raise ValueError(f"Ожидалось 3 поля, получено {len(parts)}")
-    city, temp_str, date = parts
+    city = parts[0].strip()
+    temp_str = parts[1].strip()
+    date = parts[2].strip()
     if not city or not date:
         raise ValueError("Город или дата не могут быть пустыми")
     try:
@@ -13,7 +15,7 @@ def parse_record(line: str) -> dict:
 
     return {
         "city": city,
-        "temp": temp,
+        "temperature": temp,
         "date": date
     }
 
@@ -38,7 +40,7 @@ def average_by_city(records: list[dict]) -> dict:
 
     for rec in records:
         city = rec["city"]
-        temp = rec["temp"]
+        temp = rec["temperature"]
 
         city_totals[city] = city_totals.get(city, 0.0) + temp
         city_counts[city] = city_counts.get(city, 0) + 1
