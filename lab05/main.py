@@ -14,7 +14,7 @@ def main():
                     continue
                 try:
                     event = logstats.parse_event(line)
-                    level = event[level]
+                    level = event['level']
                     counts[level] = counts.get(level, 0) + 1
                     total_parsed += 1
                     
