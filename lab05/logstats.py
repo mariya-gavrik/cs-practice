@@ -15,7 +15,7 @@ def parse_event(line: str) -> dict:
     
     return {
         'time': time,
-        'level': level
+        'level': level,
         'message': message
     }
 
@@ -47,7 +47,7 @@ def top_errors(lines: list[str], n: int) -> list[list]:
                 error_counts[msg] = error_counts.get(msg, 0) + 1
         except ValueError:
             continue
-    sorted_errors = sorted(error_counts.keys(), key=lambda c: (-c[1], c[0]))
+    sorted_errors = sorted(error_counts.items(), key=lambda x: (-x[1], x[0]))
     return [[msg, count] for msg, count in sorted_errors[:n]]
 
 
