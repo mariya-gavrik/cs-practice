@@ -1,4 +1,4 @@
-def count_by_extension(path: list[str]) -> dict[str, int]:
+def count_by_extension(paths: list[str]) -> dict[str, int]:
     counts = {}
     for path in paths:
         filename = path.split('/')[-1]
@@ -14,7 +14,7 @@ def count_by_extension(path: list[str]) -> dict[str, int]:
 def deepest_path(paths: list[str]) -> str:
     if not paths:
         return ''
-    return sorted(paths, key=lambda p: (-p.count('/'), p))[0]
+    return sorted(paths, key=lambda p:(-p.count('/'), p))[0]
 
 def human_size(n_butes: int) -> str:
     if n_butes < 1024:
@@ -26,4 +26,4 @@ def human_size(n_butes: int) -> str:
     for unit in units:
         size /= 1024.0
         if size < 1024 or unit == units[-1]:
-            return f'{size.1f} {unit}'
+            return f'{size:.1f} {unit}'
