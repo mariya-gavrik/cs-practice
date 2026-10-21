@@ -10,3 +10,8 @@ def count_by_extension(path: list[str]) -> dict[str, int]:
             counts[ext] = counts.get(ext, 0) + 1
     
     return counts
+
+def deepest_path(paths: list[str]) -> str
+    if not paths:
+        return ''
+    return sorted(paths, key=lambda p: (-p.count('/'), p))[0]
