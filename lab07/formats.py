@@ -1,5 +1,7 @@
 import json
 def csv_to_records(text: str) -> list[dict]:
+    if not text.strip():
+        return []
     lines = text.strip().split('\n')
     
     if not lines or not lines[0]:
@@ -11,7 +13,7 @@ def csv_to_records(text: str) -> list[dict]:
     for line in lines[1:]:
         if not line.strip():
             continue
-        values = [v.strip() for v in line.strip(',')]
+        values = [v.strip() for v in line.split(',')]
         record = dict(zip(headers, values))
         records.append(record)
     return records
@@ -59,7 +61,7 @@ def _convert_type(val: str):
         pass
     
     try:
-        return float(val)
+        return float(val.replace(',', '.'))
     except ValueError:
         pass
     
@@ -71,7 +73,7 @@ def merge_by_key(rows: list[dict], extra: dict, key: str = 'id') -> list[dict]:
         new_row = row.copy()
         key_val = str(new_row.get(key))
         if key_val in extra:
-            merged_data = {**extra_data, **new_row}
+            merged_data = {**extra[key_val], **new_row}
             merged_rows.append(merged_data)
         else:
             merged_rows.append(new_row)
