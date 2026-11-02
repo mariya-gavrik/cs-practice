@@ -23,23 +23,25 @@ def parse_settings(lines: list[str]) -> dict:
     current_key = None
     
     for line in lines:
-        line = line.split('#')[0].strip()
-        if not line:
+        clean_line = line.split('#')[0].strip()
+        if not clean_line:
             continue
         
-        if line.startswith('- '):
+        if clean_line.startswith('-'):
             if current_key is not None:
                 if not isintance(result[current_key], list):
                     result[current_key] = []
-                    val_str = line[2:].strip()
+                    val_str = clean_line[1:].strip()
+                    if not isinstance(result.get(current_key), list):
+                        result[current_key] = []
                     result[current_key].append(_convert_type(val_str))
                     continue
                     
         if ':' in line:
-            key, val = line.split(':', 1)
+            key, val = clean_line.split(':', 1)
             key = key.strip()
             val = val.strip()
-            if val == '':
+            if not val:
                 current_key = key
                 result[key] = []
             else:
