@@ -45,5 +45,47 @@ def parse_settings(lines: list[str]) -> dict:
                 current_key = None
         
         return result
+    
+def _convert_type(val: str):
+    val_lower = val.lower()
+    if val_lower in ('true', 'yes'):
+        return True
+    if val_lower in ('false', 'no'):
+        return False
+    
+    try:
+        return int(val)
+    except ValueError:
+        pass
+    
+    try:
+        return float(val)
+    except ValueError:
+        pass
+    
+    return val
+
+def merge_by_key(rows: list[dict], extra: dict, key: str = 'id') -> list[dict]:
+    merged_rows = []
+    for row in rows:
+        new_row = row.copy()
+        
+        if key in new_row and new_row[key] in extra:
+            extra_data = extra[new_row[key]]
+            merged_data = {**extra_data, **new_row}
+            merged_rows.append(merged_data)
+        else:
+            merged_rows.append(new_row)
+        
+        return merged_rows
+
+def records_to_json(records: list[dict]) -> str:
+    return json.dumps(
+        records,
+        ensure_ascii = False,
+        indent = 2,
+        sort_keys = True
+    )
+    
         
         
