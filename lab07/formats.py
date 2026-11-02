@@ -26,7 +26,7 @@ def parse_settings(lines: list[str]) -> dict:
             continue
         
         if line.startswith('- '):
-            if current_key is noy None:
+            if current_key is not None:
                 if not isintance(result[current_key], list):
                     result[current_key] = []
                     val_str = line[2:].strip()
@@ -69,9 +69,8 @@ def merge_by_key(rows: list[dict], extra: dict, key: str = 'id') -> list[dict]:
     merged_rows = []
     for row in rows:
         new_row = row.copy()
-        
-        if key in new_row and new_row[key] in extra:
-            extra_data = extra[new_row[key]]
+        key_val = str(new_row.get(key))
+        if key_val in extra:
             merged_data = {**extra_data, **new_row}
             merged_rows.append(merged_data)
         else:
