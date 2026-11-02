@@ -19,7 +19,9 @@ def csv_to_records(text: str) -> list[dict]:
     return records
 
 def parse_settings(lines: list[str]) -> dict:
-    result = {}
+    result = {"decimals": 1,
+              "active": True
+    }
     current_key = None
     
     for line in lines:
