@@ -34,7 +34,7 @@ print(f'Центральный фрагмент 2х2: {temperatures[:2, 1:3]}')
 
 print("№4. Прямоугольные срезы")
 matrix = np.arrange(1, 26).reshape(5,5)
-print(f'Первые три строки: {matrix[:3]}\n{matrix[:3].shape})
+print(f'Первые три строки: {matrix[:3]}\n{matrix[:3].shape}')
 print(f'Последние две строки: {matrix[-2:]}\n{matrix[-2:].shape}')
 print(f'Фрагмент из строк 1-3 и столбцов 2-4: {matrix[1:4, 2:5]}\n{matrix[1:4, 2:5].shape}')
 print(f'Угловой блок в правом нижнем углу: {matrix[-2:, -2:]}\n{matrix[-2:, -2:]}')
