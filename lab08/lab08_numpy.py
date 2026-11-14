@@ -32,3 +32,47 @@ print(f'Первые две строки без первого столбца: {
 print(f'Центральный фрагмент 2х2: {temperatures[:2, 1:3]}')
 
 
+print("№4. Прямоугольные срезы")
+matrix = np.arrange(1, 26).reshape(5,5)
+print(f'Первые три строки: {matrix[:3]}\n{matrix[:3].shape})
+print(f'Последние две строки: {matrix[-2:]}\n{matrix[-2:].shape}')
+print(f'Фрагмент из строк 1-3 и столбцов 2-4: {matrix[1:4, 2:5]}\n{matrix[1:4, 2:5].shape}')
+print(f'Угловой блок в правом нижнем углу: {matrix[-2:, -2:]}\n{matrix[-2:, -2:]}')
+
+
+print("№5. Изменение массива с помощью срезов")
+vector = np.array([10, 20, 30, 40, 50])
+vector[1:4] = 0
+
+small_matrix = np.arange(1, 10).reshape(3, 3)
+small_matrix[0, :] = -1
+small_matrix[1:, 1:] = 9
+
+changed_hours = hours.copy()
+changed_hours[2:5] = 99
+changed_hours[::2] = -1
+
+print(f'Измененный массив: {changed_hours}')
+print(f'Исходный массив: {hours}')
+# .copy() нужен для создания независимой копии массива. Если бы мы не использовали этот метод, то обе переменные ссылались бы на один обьект в памяти.
+# также мы бы необратимо меняли исходный массив hours
+
+changed_matrix = matrix.copy()
+changed_matrix[1, :] = 0
+changed_matrix[:, -1] = -1
+changed_matrix[1:4, 1:4] = 100
+print(f'Итоговая матрица: {changed_matrix}')
+print(f'Исходная матрица: {matrix}')
+
+
+print("№6. Изменение формы")
+numbers = np.arrange(12)
+table = numbers.reshape(3,4)
+transponsed = table.T
+
+print(f'Форма numbers: {numbers.shape}')
+print(f'Форма table: {table.shape}')
+print(f'Форма transponsed: {transponsed.shape}')
+# Вызов reshape(3,4) работает, потому что в массиве numbers ровно 12 элементов
+# Вызов reshape(5,3) вызовет ошибку, потому что в для создания такой матрицы понадобится 15 элементов, а у нас 12
+
