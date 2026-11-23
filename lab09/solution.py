@@ -10,7 +10,7 @@ def vector_report(values: list[float]) -> dict:
     third = arr[2]
     last = arr[-1]
     middle = arr[2:6]
-    every_second = [::2]
+    every_second = arr[::2]
     reversed = arr[::-1]
     
     return {
