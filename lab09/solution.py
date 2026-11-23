@@ -21,9 +21,22 @@ def vector_report(values: list[float]) -> dict:
         "reversed": reversed.tolist()
     }
 
-def change_vector(values: list[float]) -> list[float]
+def change_vector(values: list[float]) -> list[float]:
     arr = np.array(values).copy()
     arr[2:5] = 99
     arr[1::2] = -1
     
     return arr.tolist()
+
+def cap_above(values: list[float], limit: float) -> list[float]:
+    arr = np.array(values).copy()
+    mask = arr > limit
+    arr[mask] = limit
+    
+    return arr.tolist()
+
+def celsius_to_fahrenheit(values: list[float]) -> list[float]:
+    arr = np.array(values)
+    fahrenheit  = arr * 9 / 5 + 32
+    
+    return fahrenheit.tolist()
