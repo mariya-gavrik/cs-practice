@@ -1,7 +1,7 @@
 import numpy as np
 
 def make_hours() -> list[int]:
-    arr = np.arrange(0, 22, 3)
+    arr = np.arange(0, 22, 3)
     
     return arr.tolist()
 
@@ -22,9 +22,9 @@ def vector_report(values: list[float]) -> dict:
     }
 
 def change_vector(values: list[float]) -> list[float]:
-    arr = np.array(values).copy()
-    arr[2:5] = 99
-    arr[1::2] = -1
+    arr = np.array(values, dtype=float).copy()
+    arr[2:5] = 99.0
+    arr[::2] = -1.0
     
     return arr.tolist()
 
